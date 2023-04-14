@@ -3,14 +3,14 @@ from os import path
 from typing import Dict
 from requests import post, get
 from datetime import datetime
-from .config import config
+from config import config
 
 class Sender():
 
     def __init__(self):
-        self.api_url = config['api']['api_metrics_url']
-        self.device_key = config['api']['device_key']
-        self.token_refresh_url = config['api']['api_token_refresh_url']
+        self.api_url = config['api']['api_metrics_url'].strip('"')
+        self.device_key = config['api']['device_key'].strip('"')
+        self.token_refresh_url = config['api']['api_token_refresh_url'].strip('"')
     
     def send_metric_request(self, metrics: Dict[str, float]) -> int:
         response = post(self.api_url, headers={
@@ -47,10 +47,15 @@ class Sender():
 
         return False
     
+    def token_file_path(self):
+        return path.join(path.dirname(path.realpath(__file__)), 'token.txt')
+    
     def save_access_token(self, token: str) -> None:
-        with open(path.join(path.dirname(path.realpath(__file__)), 'token.txt'), 'w') as f:
+        with open(self.token_file_path(), 'w+') as f:
             f.write(token)
     
     def load_access_token(self) -> str:
-        with open(path.join(path.dirname(path.realpath(__file__)), 'token.txt'), 'r') as f:
-            return f.read()
+        if path.exists(self.token_file_path()):
+            with open(self.token_file_path(), 'r') as f:
+                return f.read()
+        return ''

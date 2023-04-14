@@ -1,6 +1,6 @@
 from os import path
 import configparser
-from .args import args
+from args import args
 
 class ConfigParser(configparser.ConfigParser):
     """Can get options() without defaults

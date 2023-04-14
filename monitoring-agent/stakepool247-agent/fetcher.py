@@ -1,6 +1,6 @@
 from typing import Dict, Optional
 from prometheus_api_client import PrometheusConnect
-from .config import config
+from config import config
 
 class Fetcher():
 
