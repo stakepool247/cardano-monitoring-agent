@@ -53,7 +53,7 @@ fetch_epochs () {
     echo -e "Last submitted epoch ${LAST_SUBMITTED_EPOCH}, accepting blocks for epoch ${NEXT_ACCEPTED_EPOCH}"
 }
 
-if ["$STAKEPOOL247_API_DEVICE_TOKEN" = ""]; then
+if [ "$STAKEPOOL247_API_DEVICE_TOKEN" = "" ]; then
     echo "Device token not configured"
     exit 1
 fi
