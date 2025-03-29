@@ -18,7 +18,7 @@ STAKEPOOL247_API_DEVICE_TOKEN=""
 ###############################################################################
 
 
-STAKEPOOL247_API_ENDPOINT="https://testnet-api.stakepool247.io:4000/"
+STAKEPOOL247_API_ENDPOINT="https://api.stakepool247.io:4000/"
 SCRIPT_PATH=$(dirname "$0" 2> /dev/null)
 
 if [[ -f "${SCRIPT_PATH}/leadership.conf" ]]; then source "${SCRIPT_PATH}/leadership.conf"; fi
